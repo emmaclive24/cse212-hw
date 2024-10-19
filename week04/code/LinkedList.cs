@@ -209,19 +209,19 @@ public class LinkedList : IEnumerable<int>
 	{
 		// TODO Problem 5
 		  var curr = _tail; // Start from the tail for reverse iteration
-		while (curr is not null)
-		{
-			yield return curr.Data; // Provide (yield) each item
-			curr = curr.Prev; // Move backward
-		}
-	}
+        while (curr is not null)
+        {
+            yield return curr.Data; // Provide (yield) each item
+            curr = curr.Prev; // Move backward
+        }
+    }
 
-	public override string ToString()
-	{
-		return "<LinkedList>{" + string.Join(", ", this) + "}";
+    public override string ToString()
+    {
+        return "<LinkedList>{" + string.Join(", ", this) + "}";
+    }
+     // replace this line with the correct yield return statement(s)
 	}
-	 // replace this line with the correct yield return statement(s)
-
 
 	public override string ToString()
 	{
@@ -239,11 +239,10 @@ public class LinkedList : IEnumerable<int>
 	{
 		return _head is not null && _tail is not null;
 	}
-
+}
 
 public static class IntArrayExtensionMethods {
 	public static string AsString(this IEnumerable array) {
 		return "<IEnumerable>{" + string.Join(", ", array.Cast<int>()) + "}";
 	}
-}
 }
