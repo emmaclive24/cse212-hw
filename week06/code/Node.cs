@@ -12,6 +12,11 @@ public class Node
     public void Insert(int value)
     {
         // TODO Start Problem 1
+        // CHECK IF VALUE IS A DUPLICATE, DON'T ADD IT.
+        if(value == Data) 
+        {
+            return;
+        }
 
         if (value < Data)
         {
@@ -21,7 +26,7 @@ public class Node
             else
                 Left.Insert(value);
         }
-        else if (value > Data)
+        else
         {
             // Insert to the right
             if (Right is null)
@@ -34,29 +39,78 @@ public class Node
     public bool Contains(int value)
     {
         // TODO Start Problem 2
-        if (value == Data)
+        // CHECK ROOT VALUE
+        if(value == Data)
+        {
             return true;
-        else if (value < Data && Left is not null)
-            return Left.Contains(value);
-        else if (value > Data && Right is not null)
-            return Right.Contains(value);
+        }
 
-        return false;
+        // CHECK THE LEFT SUB TREE AND THEN THE RIGHT SUB TREE
+        else if(value < Data) 
+        {
+            
+            if (Left != null)
+            {
+                return Left.Contains(value);
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        else 
+        {
+
+            if (Right != null)
+            {
+                return Right.Contains(value);
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
     }
 
     public int GetHeight()
     {
         // TODO Start Problem 4
-        int leftHeight = 0;
-        if (Left is not null)
+        int leftHeight;
+        int rightHeight;
+
+        // HEIGHT OF LEFT SUBTREE
+        if (Left != null)
+        {
             leftHeight = Left.GetHeight();
+        }
+        else
+        {
+            leftHeight = 0;
+        }
 
-        int rightHeight = 0;
-        if (Right is not null)
+        // HEIGHT OF RIGHT SUBTREE
+        if (Right != null)
+        {
             rightHeight = Right.GetHeight();
+        }
+        else
+        {
+            rightHeight = 0;
+        }
 
-        return Math.Max(leftHeight, rightHeight) + 1;
-
-        //return 0; // Replace this line with the correct return statement(s)
+        // HEIGHT OF TREE
+        if (leftHeight > rightHeight)
+        {
+            return 1 + leftHeight;
+        }
+        else
+        {
+            return 1 + rightHeight;
+        }
+        // return 0; // Replace this line with the correct return statement(s)
     }
+
 }
